@@ -53,8 +53,8 @@ try {
     }
 let errorhandler = () => alert("This is not the requested file");
 
-function parseResult(output){
-    //
+function parseResult(result){
+    // let lines = result.split(/\r?\n/g);
 }
     
 } catch (error) {
