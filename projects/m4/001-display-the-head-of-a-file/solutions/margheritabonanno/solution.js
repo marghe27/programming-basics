@@ -4,27 +4,27 @@
 
 try {
 
+    // create element input with type file
+    let element = document.createElement('input');
+    element.setAttribute('type',"file");
+    element.setAttribute('id', "btnOpenFile");
+    element.onchange = function(){
+        readText(this);
+    }
+
+    //create style to display input element
+    element.style.display = 'block';
+    element.style.marginLeft = '10px';
+    document.body.appendChild(element);
+    //search file
+    element.click();
+
     function readText(fileName){
 
-        // create element input with type file
-        let element = document.createElement('input');
-        element.setAttribute('type',"file");
-        element.setAttribute('id', "btnOpenFile");
-        element.onchange = function(){
-            readText(this);
-        }
-
-        //create style to display input element
-        element.style.display = 'block';
-        element.style.marginLeft = '10px';
-        document.body.appendChild(element);
-
-        //a table to display the result
-        let table = document.querySelector("table");
-        table.before(element); 
-    
-        //search file
-        element.click();
+        //a paragraph to display the result // not yet implemented
+        let paragraph = document.querySelector("p");
+        paragraph.before(element);           
+        
 
         let reader;
         // If FileReader is supported
@@ -42,9 +42,11 @@ try {
             console.log(fileName.file[0].name);
             reader.onload = function(event) {
             let output = event.target.result;
-            parseResult(output);
+            document.getElementById("contentFile").innerHTML = output;
+    
+            parseResult(output);// not yet implemented
             };
-        reader.readAsText(fileName.file[0]);
+            reader.readAsText(fileName.file[0]);
         } else {
             errorhandler();
             return false;
@@ -53,8 +55,10 @@ try {
     }
 let errorhandler = () => alert("This is not the requested file");
 
+// function to parse the result // not yet implemented
 function parseResult(result){
-    // let lines = result.split(/\r?\n/g);
+     //let lines = result.split(/\r?\n/g);
+
 }
     
 } catch (error) {
