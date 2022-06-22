@@ -9,8 +9,9 @@ try {
     element.setAttribute('type',"file");
     element.setAttribute('id', "btnOpenFile");
     element.onchange = function(){
-        readText(this);
+        openfile();
     }
+    
 
     //create style to display input element
     element.style.display = 'block';
@@ -19,13 +20,8 @@ try {
     //search file
     element.click();
 
-    function readText(fileName){
-
-        //a paragraph to display the result // not yet implemented
-        let paragraph = document.querySelector("p");
-        paragraph.before(element);           
+    let openfile = function (){
         
-
         let reader;
         // If FileReader is supported
         if (window.File && window.FileReader){
@@ -35,31 +31,29 @@ try {
             alert('FileReader not supported in your browser');
             return false;
         }
-        // If the file to read is the one passed as argument: 
-        let argument = (fileName.file[0])? true : false;
+        
+            
+            reader.onload = function(e) {
+            let output = e.target.result;
 
-        if(argument){
-            console.log(fileName.file[0].name);
-            reader.onload = function(event) {
-            let output = event.target.result;
-            document.getElementById("contentFile").innerHTML = output;
-    
-            parseResult(output);// not yet implemented
+            //a cite to display the result 
+            let node = document.querySelector("cite");
+            node.before(element);       
+
+            //cite node for displaying the text of the file
+            node.innerText = output;
+                console.log("output "+ node.innerText.substring(0, 10));
+            
             };
-            reader.readAsText(fileName.file[0]);
-        } else {
-            errorhandler();
-            return false;
-        }
+            reader.readAsText(element.files[0]);
+        
+        
         return true;
     }
-let errorhandler = () => alert("This is not the requested file");
+//let errorhandler = () => alert("This is not the requested file");
 
-// function to parse the result // not yet implemented
-function parseResult(result){
-     //let lines = result.split(/\r?\n/g);
 
-}
+
     
 } catch (error) {
     document.getElementById("errorMessage").innerHTML = error.message;
