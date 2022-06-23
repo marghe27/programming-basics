@@ -34,7 +34,6 @@ try {
         
             
             reader.onload = function(e) {
-<<<<<<< HEAD
                 let output = e.target.result;
 
                 //a cite to display the result 
@@ -60,37 +59,16 @@ try {
                         document.getElementById("DEMO").innerHTML = text;  
                         console.log("text "+text);
                         
-=======
-            let output = e.target.result;
-
-            //a cite to display the result 
-            let node = document.querySelector("cite");
-            node.before(element);       
-
-            //cite node for displaying the text of the file
-            node.innerText = output;
-                console.log("output "+ node.innerText.substring(0, 10));
->>>>>>> cca610b4524fcf5e4cbc8c4b4496a3008247f490
             
             };
             reader.readAsText(element.files[0]);
         
-<<<<<<< HEAD
         return true;
     }
 
 
 
 
-=======
-        
-        return true;
-    }
-//let errorhandler = () => alert("This is not the requested file");
-
-
-
->>>>>>> cca610b4524fcf5e4cbc8c4b4496a3008247f490
     
 } catch (error) {
     document.getElementById("errorMessage").innerHTML = error.message;
