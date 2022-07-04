@@ -1,11 +1,12 @@
 // display-the-head-of-a-file 
 
+
 "use strict";
 
 try {
 
     // create element input with type file
-    let element = document.createElement('input');
+    const element = document.createElement('input');
     element.setAttribute('type',"file");
     element.setAttribute('id', "btnOpenFile");
     element.onchange = function(){
