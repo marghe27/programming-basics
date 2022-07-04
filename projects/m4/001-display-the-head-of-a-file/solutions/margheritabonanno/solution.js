@@ -21,7 +21,7 @@ try {
     //search file
     element.click();
 
-    let openfile = function (){
+    const openfile = function (){
         
         let reader;
         // If FileReader is supported
