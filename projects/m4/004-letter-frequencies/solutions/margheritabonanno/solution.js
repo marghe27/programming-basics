@@ -12,8 +12,9 @@ const blob = `http://localhost:8888/margheritabonanno_2/${fileName}`;
 
 
 
-//function that control if user's file is readable
-const controlExtens = (url)=>{
+// function that reads user's file 
+const readFile = (url)=>{
+
     //to control if the name of the file is a  valid name
     controlValidName(fileName) ? console.log("correct file name!") : console.log("incorrect file name!"); 
 
