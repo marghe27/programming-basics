@@ -11,36 +11,25 @@ console.log("fileName is: "+fileName);
 const blob = `http://localhost:8888/margheritabonanno_2/${fileName}`;
 
 
-
-// function that reads user's file 
+//function that control if user's file is readable
 const readFile = (url)=>{
+    //to control if the name of the file is a valid name
+    controlValidName(fileName) ? console.log("Correct file name!") : console.log("Incorrect file name!"); 
 
-    //to control if the name of the file is a  valid name
-    controlValidName(fileName) ? console.log("correct file name!") : console.log("incorrect file name!"); 
-
-    // to separate the file name from its extension
-    const ext = url.split(".");
-    // it takes the extension in position [length-1]
-    console.log("ext:  "+ ext[ext.length-1]); 
-    //array of text file extensions
-    const arrExtens = ["doc","docx","odt","tex","txt","rtf"];
-    // it checks whether an element is in array
-    const isInArray = (el) => el == ext[ext.length-1];
-    const isTrue = arrExtens.some(isInArray);
-    // expected output: true if the extens. is .txt and etc.
-    console.log(isTrue);
+    //to control if the name of the file has valid extension
+    const isTrue = controlExtens(url);
     
     if(isTrue){
             console.log("This file is ok, because it's a readable text file"); 
+            // to get and read the element
             const myText = functionFetch(url); 
             console.log("myText " + myText);
             myText.then(values =>{
-               
-                // Remove punctuation, spaces and numbers from string
-                const myTextArray = removePunct(values);
+            // Remove punctuation, spaces and numbers from string
+            const myTextArray = removePunct(values);
                 
-                // count all char occurances
-                charCountOccurances(myTextArray);
+            // count all char occurances
+            charCountOccurances(myTextArray);
                 
             })
     }else{
@@ -50,5 +39,5 @@ const readFile = (url)=>{
     
 }
 
-controlExtens(blob);
+readFile(blob);
 

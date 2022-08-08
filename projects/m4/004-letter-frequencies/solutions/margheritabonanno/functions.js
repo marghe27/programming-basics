@@ -3,7 +3,6 @@
 
 //PROMISES
 // use of FETCH to get and read elements
-
 const functionFetch = (url) => {
        
     return fetch(url)
@@ -17,6 +16,21 @@ const functionFetch = (url) => {
         console.log("Errore "+error);
      })
 
+}
+
+//to control if the name of the file has valid extension
+const controlExtens = (url)=>{
+    // to separate the file name from its extension
+    const ext = url.split(".");
+    // take the extension in position [length-1]
+    console.log("ext:  "+ ext[ext.length-1]); 
+    //array of text file extensions
+    const arrExtens = ["doc","docx","odt","tex","txt","rtf"];
+    // checks whether an element is in array
+    const isInArray = (el) => el == ext[ext.length-1];
+    const isTrue = arrExtens.some(isInArray);
+
+    return isTrue;
 }
 
 //to control if the name of the file is a  valid name
@@ -35,7 +49,7 @@ function charCountOccurances (arr) {
 
 }
 
-//it removes punctuation, spaces and numbers from string
+// Remove punctuation, spaces and numbers from string
 const removePunct = (textArr)=>{
     const remove = textArr.replace(/[,.]|[0-9]|[-_ \“ \” \! \? \; \: \– ]|[\( \) \"\']|[\s]/gi, '');
     const myTextClear = remove.toLowerCase();
