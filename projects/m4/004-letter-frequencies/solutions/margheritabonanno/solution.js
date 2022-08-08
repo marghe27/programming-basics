@@ -11,7 +11,7 @@ console.log("fileName is: "+fileName);
 const blob = `http://localhost:8888/margheritabonanno_2/${fileName}`;
 
 
-//function that control if user's file is readable
+//function to read user's file
 const readFile = (url)=>{
     //to control if the name of the file is a valid name
     controlValidName(fileName) ? console.log("Correct file name!") : console.log("Incorrect file name!"); 
