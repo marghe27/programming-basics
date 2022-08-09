@@ -3,20 +3,32 @@
 
 //PROMISES
 // use of FETCH to get and read elements
-const functionFetch = (url) => {
-       
-    return fetch(url)
-     .then((response)=>{
-         return response.text();
-     })
-     .then(data =>{
-        //console.log("data response:  "+data);
-        return data;})
-     .catch(error=>{
-        console.log("Errore "+error);
-     })
+const functionFetch = (url) => fetch(url)
+     .then(response=>response.text())
+     .catch(error=>console.log("Errore "+error));
 
+
+//function to read user's file
+const readFile = (url,fileName)=>{
+    //to control if the name of the file is a valid name
+   if(!controlValidName(fileName)){
+        console.log("Incorrect file name!");
+        return;
+   }  
+  if(controlExtens(url)){
+            console.log("This file is ok, because it's a readable text file"); 
+            // to get and read the element
+            functionFetch(url).then(values =>{
+            // Remove punctuation, spaces and numbers from string
+            const myTextArray = removePunct(values);    
+            // count all char occurances
+            charCountOccurances(myTextArray);     
+            })
+    }else{
+        console.log("ATTENTION! This file isn't a readable text file!");
+    }   
 }
+
 
 //to control if the name of the file has valid extension
 const controlExtens = (url)=>{
@@ -28,31 +40,24 @@ const controlExtens = (url)=>{
     const arrExtens = ["doc","docx","odt","tex","txt","rtf"];
     // checks whether an element is in array
     const isInArray = (el) => el == ext[ext.length-1];
-    const isTrue = arrExtens.some(isInArray);
-
-    return isTrue;
+    return arrExtens.some(isInArray);
 }
 
 //to control if the name of the file is a  valid name
-function controlValidName(str) {
-    return /^[a-zA-Z0-9_.+-]+\.[a-zA-Z]+$/.test(str);
-  }
+const controlValidName = (str) => /^[a-zA-Z0-9_.+-]+\.[a-zA-Z]+$/.test(str);
   
 
 // to count all chars of the text 
-function charCountOccurances (arr) { 
-    const countChar = [...arr].reduce((prev, curr) => { 
+const charCountOccurances =(arr) =>
+    [...arr].reduce((prev, curr) => { 
                     prev[curr] = prev[curr] ? prev[curr]+ 1 : 1; 
-                    return prev }, {});           
-    console.log(countChar); 
-    return countChar;
+                    return prev
+                 }, {});           
 
-}
+
 
 // Remove punctuation, spaces and numbers from string
-const removePunct = (textArr)=>{
+const removePunct = textArr => {
     const remove = textArr.replace(/[,.]|[0-9]|[-_ \“ \” \! \? \; \: \– ]|[\( \) \"\']|[\s]/gi, '');
-    const myTextClear = remove.toLowerCase();
-    console.log("My text without punctuation and in lowercase (myTextClear):  "+myTextClear);//
-    return myTextClear;
+    return remove.toLowerCase();
 }
