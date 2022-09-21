@@ -1,0 +1,17 @@
+{
+  "name": "margheritabonanno-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "solution.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fs-js": "^1.0.6",
+    "node-fetch": "^3.2.10",
+    "readline": "^1.3.0"
+  }
+}
