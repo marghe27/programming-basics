@@ -7,7 +7,7 @@ const fs = require('fs-js');
 const readline = require ('readLine');
 
 
-// CODICE PERFETTAMENTE FUNZIONANTE 
+//  
 const blob = 'acronimi_divertenti.txt';
 const echo = console.log;
 let args = process.argv;
@@ -19,9 +19,8 @@ fs.readFile(arg, 'utf8', (err, data) => {
     return;
   }
   console.log(data);
-  /**function to read user's file
-  const readUserFile(url,fileName)*/
-  readUserFile(arg,blob);
+  /**function to read user's file*/
+  readUserFile(arg,data);
 });
 
 
