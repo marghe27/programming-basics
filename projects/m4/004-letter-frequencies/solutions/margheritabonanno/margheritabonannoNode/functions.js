@@ -1,12 +1,6 @@
 // 4th challenge: Letter Frequencies
 "use strict";
 
-//PROMISES
-// use of FETCH to get and read elements
-/* const functionFetch = (url) => fetch(url)
-     .then(response=>response.text())
-     .catch(error=>console.log("Errore "+error)); */
-
 
 //function to read user's file
 const readUserFile = (url,fileName)=>{
